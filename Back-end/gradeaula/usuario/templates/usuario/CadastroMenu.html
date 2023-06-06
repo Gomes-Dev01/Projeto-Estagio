@@ -30,7 +30,7 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{% url 'usuarios' %}"> Usuários </a></li>
             <li><a class="dropdown-item" href="{% url 'niveisacesso' %}"> Níveis de Acesso </a></li>
-            <li><a class="dropdown-item" href="{% url 'cadastromenu' %}"> Telas </a></li>
+            <li><a class="dropdown-item" href="{% url 'telas' %}"> Telas </a></li>
           </ul>
         </li>
       </ul>
@@ -46,7 +46,7 @@
     </section>
   </aside>
 
-  <div class="divBtn">  <a href="../listagemUsuario/"> <button class="btn btn-outline-dark" title="Voltar"> <i class="bi bi-arrow-return-left"></i> </a>  </button> </div>
+  <div class="divBtn">  <a href="{% url 'telas' %}"> <button class="btn btn-outline-dark" title="Voltar"> <i class="bi bi-arrow-return-left"></i> </a>  </button> </div>
   <div class="main-login">
     <div class="right-login">
       <form class="card-login" method="POST">

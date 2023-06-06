@@ -57,7 +57,7 @@ def homeUsuario(request):
         render(request, 'usuario/CadastroUsuario.html', context)
     elif request.method == "POST": 
         novo_usuario = Usuario()
-        nivelUsuario = NivelAcesso.objects.get(pk=1)      
+        nivelUsuario = NivelAcesso.objects.get(pk=10)      
 
         novo_usuario.nome = request.POST["nome"]
         novo_usuario.usuario = request.POST["usuario"]
@@ -120,12 +120,15 @@ def cadastroTela(request):
 
     elif request.method == "POST":
         novomenu = MenuEntrada()
+        nivelmenu = NivelAcesso.objects.get(pk=10) 
+
         novomenu.ds_MenuEntrada = request.POST['ds_menu']
         novomenu.nivel_MenuEntrada = request.POST['nivel_menu']
         novomenu.ordem = request.POST['ordem']
         novomenu.nomePagina = request.POST['nome']
 
         novomenu.save()
+        novomenu.id_niveis.add(nivelmenu)
 
         return render(request, 'usuario/CadastroMenu.html', context)
 
@@ -172,6 +175,7 @@ class alteraNivel(UpdateView):
     model = NivelAcesso
     fields = ['ds_nivelAcesso'] 
     template_name_suffix = ''
+    success_url = reverse_lazy('niveisacesso')
 
 class usuarios(ListView):
     model = Usuario
