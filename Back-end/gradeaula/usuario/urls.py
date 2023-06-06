@@ -1,7 +1,7 @@
 from django.urls import path
 from  django.contrib.auth import views
 from . import views
-from .views import usuarios, niveisAcesso, cadastroTela
+from .views import usuarios, niveisAcesso, cadastroTela, Telas
 
 
 
@@ -10,6 +10,7 @@ urlpatterns = [
     path('usuario/', views.homeUsuario, name='usuario-home'),
     path('listagemUsuario/', usuarios.as_view(), name='usuarios'),
     path('listagemNiveisAcesso/', niveisAcesso.as_view(), name='niveisacesso'),
+    path('listagemTelas/', Telas.as_view(), name='telas'),
     path('cadastrarNivel/', views.cadastroNivel, name='cadastronivel'),
     path('cadastrarMenu/', views.cadastroTela, name='cadastromenu'),
 
