@@ -120,12 +120,15 @@ def cadastroTela(request):
 
     elif request.method == "POST":
         novomenu = MenuEntrada()
+        nivelMenu = NivelAcesso.objects.get(pk=10)
+
         novomenu.ds_MenuEntrada = request.POST['ds_menu']
         novomenu.nivel_MenuEntrada = request.POST['nivel_menu']
         novomenu.ordem = request.POST['ordem']
         novomenu.nomePagina = request.POST['nome']
 
         novomenu.save()
+        novomenu.id_niveis.add(nivelMenu)
 
         return render(request, 'usuario/CadastroMenu.html', context)
 
