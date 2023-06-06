@@ -178,3 +178,9 @@ class niveisAcesso(ListView):
     model = NivelAcesso
     template = ''
 
+
+class Telas(ListView):
+    model = MenuEntrada
+    template = ''
+
+

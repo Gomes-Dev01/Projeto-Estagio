@@ -38,7 +38,7 @@ class MenuEntrada(models.Model):
     ds_MenuEntrada = models.CharField(max_length=50)
     nivel_MenuEntrada = models.IntegerField(default=0)
     ordem = models.CharField(max_length=50)
-    nomePagina = models.CharField(max_length=100)
+    nomepagina = models.CharField(max_length=100)
 
 class NivelEntradaMenu(models.Model):
     nivelAcesso = models.ForeignKey(NivelAcesso, on_delete=models.PROTECT)
