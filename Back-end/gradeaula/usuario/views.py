@@ -57,7 +57,7 @@ def homeUsuario(request):
         render(request, 'usuario/CadastroUsuario.html', context)
     elif request.method == "POST": 
         novo_usuario = Usuario()
-        nivelUsuario = NivelAcesso.objects.get(pk=10)      
+        nivelUsuario = NivelAcesso.objects.get(pk=1)      
 
         novo_usuario.nome = request.POST["nome"]
         novo_usuario.usuario = request.POST["usuario"]
