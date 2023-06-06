@@ -171,6 +171,10 @@ def alteraUsuario(request, usuario_id):
     return render(request, 'usuario.html', context)
 
 
+class alteraNivel(UpdateView):
+    model = NivelAcesso
+    fields = ['ds_nivelAcesso'] 
+    template_name_suffix = ''
 
 class usuarios(ListView):
     model = Usuario

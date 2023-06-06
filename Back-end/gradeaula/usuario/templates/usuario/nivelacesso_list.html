@@ -70,7 +70,7 @@
                     <td>{{ nivel.pk }}</td>
                     <td>{{ nivel.ds_nivelAcesso }}</td>
                     <td>
-                        <a hef="" class="btn btn-warning btn-sm">Editar</a>
+                        <a hef="{% url 'atualizanivelacesso' nivel.pk %}" class="btn btn-warning btn-sm">Editar</a>
                     </td>
                 </tr>
                 {% empty %}
