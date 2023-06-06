@@ -1,7 +1,7 @@
 from django.urls import path
 from  django.contrib.auth import views
 from . import views
-from .views import usuarios, niveisAcesso, cadastroTela, Telas, alteraNivel
+from .views import usuarios, niveisAcesso, cadastroTela, Telas
 
 
 
