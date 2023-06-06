@@ -34,14 +34,15 @@ class Usuario(models.Model):
 
 
 class MenuEntrada(models.Model):
+    id_niveis = models.ManyToManyField(NivelAcesso, related_name='menus')
     id = models.AutoField(primary_key=True)
     ds_MenuEntrada = models.CharField(max_length=50)
     nivel_MenuEntrada = models.IntegerField(default=0)
     ordem = models.CharField(max_length=50)
     nomepagina = models.CharField(max_length=100)
 
-class NivelEntradaMenu(models.Model):
-    nivelAcesso = models.ForeignKey(NivelAcesso, on_delete=models.PROTECT)
-    MenuEntrada = models.ForeignKey(MenuEntrada, on_delete=models.PROTECT)
-    alteracao = models.BooleanField
-    Exclusao = models.BooleanField
+#class NivelEntradaMenu(models.Model):
+#    nivelAcesso = models.ForeignKey(NivelAcesso, on_delete=models.PROTECT)
+#    MenuEntrada = models.ForeignKey(MenuEntrada, on_delete=models.PROTECT)
+#    alteracao = models.BooleanField
+ #   Exclusao = models.BooleanField
