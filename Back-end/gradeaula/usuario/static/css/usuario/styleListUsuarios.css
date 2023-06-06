@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+*{
+    font-family: 'Bebas Neue', sans-serif;
+    padding: 0;
+}
+
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: #0b0202;
+    overflow-y: auto;
+    width: 200px;
+    transition: all ease-in-out 0.5s;
+    padding: 0 15px;
+    z-index: 9997;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.6px;
+}
+
+.nav-menu .nav .nav-link{
+    font-size: 16px;
+}
+
+.linha{
+    color: #fff;
+}
+
+a.navbar-brand{
+    display: flex;
+    align-items: center;
+    margin-right: 0px;
+    padding: 0px;
+    width: 150px;
+}
+
+.nav-link{
+    width: 150px;
+}
+
+.navbar-brand h1{
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: #fff;
+}
+
+
+.container-fluid img{
+  border-radius: 50%;
+}
+
+.nav-menu{
+    padding: 1rem;
+}
+
+.nav-menu a, .nav-menu a:focus{
+    display: flex;
+    align-items: center;
+    color: #a8a9b4;
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+.nav-menu a i, .nav-menu a:focus i{
+    font-size: 26px;
+    padding-right: 0.8rem;
+    color: #6f7180;
+}
+
+.nav-menu a:hover, 
+.nav-menu .active,
+.nav-menu .active:focus, 
+.nav-menu li:hover > a{
+    text-decoration: none;
+    color: #fff; 
+    background-color: #0b0202;
+}
+
+
+.nav-menu a:hover i, 
+.nav-menu .active i,
+.nav-menu .active:focus i, 
+.nav-menu li:hover > a i{
+    color: #761c1c;
+}
+
+i.menu-mobile{
+    position: fixed;
+    color: #fff;
+    background-color: #0b0202;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1rem;
+    border-radius: 5rem;
+    cursor: pointer;
+    z-index: 10;
+    width: 45px;
+    height: 45px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-nav-active{
+    overflow: hidden;
+}
+
+.menu-nav-active #header{
+    left: 0;
+}
+
+@media (max-width: 1024px){
+    #header{
+        left: -200px;
+    }
+    i.menu-mobile{
+        display: flex;
+    }
+    #main{
+        margin-left: 0px;
+    }
+}
+
+
+
+
+section.container-fluid{
+    width: auto;
+    margin: 30px 200px 0px 200px;
+    padding-left: 100px;
+}
+
+.containerA{
+    display: flex;
+    justify-content: space-between;
+    height: 35px;
+}
+
+.titulo{
+    font-size: 30px;
+    font-family: 'Bebas Neue', sans-serif;
+    margin: 0px;
+    height: 30px;
+}
+
+button.btn{
+    letter-spacing: 2px;
+    width: auto;
+    height: 30px;
+    padding: 4px 10px;
+}
+
+hr.linhaList{
+    margin-top: 0px;
+    margin-bottom: 30px;
+    color: black;
+}
+
+

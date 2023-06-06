@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+* {
+    font-family: 'Bebas Neue', sans-serif;
+    padding: 0;
+}
+
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: #0b0202;
+    overflow-y: auto;
+    width: 200px;
+    transition: all ease-in-out 0.5s;
+    padding: 0 15px;
+    z-index: 9997;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.6px;
+}
+
+.nav-menu .nav .nav-link {
+    font-size: 16px;
+}
+
+.linha {
+    color: #fff;
+}
+
+a.navbar-brand {
+    display: flex;
+    align-items: center;
+    margin-right: 0px;
+    padding: 0px;
+    width: 150px;
+}
+
+.nav-link {
+    width: 150px;
+}
+
+.navbar-brand h1 {
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: #fff;
+}
+
+
+.container-fluid img {
+    border-radius: 50%;
+}
+
+.nav-menu {
+    padding: 1rem;
+}
+
+.nav-menu a,
+.nav-menu a:focus {
+    display: flex;
+    align-items: center;
+    color: #a8a9b4;
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+.nav-menu a i,
+.nav-menu a:focus i {
+    font-size: 26px;
+    padding-right: 0.8rem;
+    color: #6f7180;
+}
+
+.nav-menu a:hover,
+.nav-menu .active,
+.nav-menu .active:focus,
+.nav-menu li:hover>a {
+    text-decoration: none;
+    color: #fff;
+    background-color: #0b0202;
+}
+
+
+.nav-menu a:hover i,
+.nav-menu .active i,
+.nav-menu .active:focus i,
+.nav-menu li:hover>a i {
+    color: #761c1c;
+}
+
+i.menu-mobile {
+    position: fixed;
+    color: #fff;
+    background-color: #0b0202;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1rem;
+    border-radius: 5rem;
+    cursor: pointer;
+    z-index: 10;
+    width: 45px;
+    height: 45px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-nav-active {
+    overflow: hidden;
+}
+
+.menu-nav-active #header {
+    left: 0;
+}
+
+@media (max-width: 1024px) {
+    #header {
+        left: -200px;
+    }
+
+    i.menu-mobile {
+        display: flex;
+    }
+
+    #main {
+        margin-left: 0px;
+    }
+}
+
+
+
+
+/* Formulario de cadastro*/
+.main-login {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+
+.right-login {
+    width: 45vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-login {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 25px 30px;
+    background: #9c0404;
+    border-radius: 20px;
+    box-shadow: 15px 20px 25px 0px #00000056;
+}
+
+.card-login>h1 {
+    color: #fff;
+    margin: 0px;
+    font-size: 26px;
+}
+
+.textfield {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 5px 0px;
+}
+
+.textfield>input {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background: #ffcbba;
+    color: black;
+    font-size: 16px;
+    outline-color: #fff;
+    box-sizing: border-box;
+    letter-spacing: 0.5px;
+}
+
+.status-drop {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background: #ffcbba;
+    color: black;
+    font-size: 12pt;
+    outline-color: #fff;
+    box-sizing: border-box;
+}
+
+.textfield>label {
+    color: #f0ffffde;
+    margin-bottom: 1px;
+    margin-top: 2px;
+    font-size: 14px;
+}
+
+.textfield>input::placeholder {
+    color: black;
+    opacity: 0.30;
+    font-size: 12px;
+}
+
+.btn-cadastrar {
+    width: 100%;
+    padding: 12px 0px;
+    margin: 15px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 50;
+    letter-spacing: 3px;
+    color: #fff;
+    background: black;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Efeito do mouse passando no botão */
+.card-login .btn-cadastrar:hover {
+    color: #fff;
+    background: black;
+    box-shadow: 0px 0px 0px 3px #fff;
+}
+
+
+
+/* Botão voltar */
+.divBtn {
+    position: absolute;
+    margin-left: 210px;
+    margin-top: 10px;
+}
+
+.bi {
+    color: red;
+}
