@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView
-from django.contrib.auth import authenticate, login
+from django.contrib.auth.hashers import check_password
 from django.contrib import messages
 from .forms import InsereUsuarioForm, UsuarioLoginForm, criaNivel, criaMenu
 from .models import Usuario,NivelAcesso, MenuEntrada
@@ -28,9 +28,11 @@ def index(request):
         #             
         user = request.POST['usuario']        
         password = request.POST['senha']
-        baseusuario = Usuario.objects.filter(usuario = user)
+        baseusuario = Usuario.objects.get(usuario = user)
+
+       
         
-        basesenha = Usuario.objects.filter(senha = password)
+        #basesenha = Usuario.objects.filter(senha = password)
         
         #confirmacao = authenticate(request, usuario=user, senha=password)
         
@@ -42,7 +44,7 @@ def index(request):
             #'form': form
             #}  
         print("primeiro aqui")
-        if (baseusuario.first() and basesenha.first()):
+        if (check_password(password, baseusuario.senha)):
             print("Depois aqui")
             return redirect('usuario/')
     return render(request, 'usuario/index.html')
