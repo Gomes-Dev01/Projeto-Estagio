@@ -11,6 +11,8 @@ from django.contrib import messages
 from .forms import InsereUsuarioForm, UsuarioLoginForm, criaNivel, criaMenu
 from .models import Usuario,NivelAcesso, MenuEntrada
 from datetime import date
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 @csrf_protect
@@ -58,8 +60,9 @@ def index(request):
             
         except ObjectDoesNotExist:
             return redirect('usuario-login')
-    return render(request, 'usuarios')
+    return redirect('usuarios')
 
+@login_required
 @csrf_protect
 def homeUsuario(request):
     if request.method == "GET":
@@ -95,6 +98,8 @@ def homeUsuario(request):
         
     return render(request, 'usuario/CadastroUsuario.html')
 
+
+@login_required
 @csrf_protect
 def cadastroNivel(request):
     if request.method == "POST": 
@@ -122,6 +127,7 @@ def cadastroNivel(request):
     return redirect('niveisacesso')
 
 
+@login_required
 @csrf_protect
 def cadastroTela(request):
     if request.method == "GET":
@@ -148,7 +154,7 @@ def cadastroTela(request):
     return redirect('cadastromenu')
 
 
-
+@login_required
 @csrf_protect
 def alteraUsuario(request, usuario_id):
     usuario = get_object_or_404(Usuario, pk=usuario_id)
@@ -185,7 +191,8 @@ def alteraUsuario(request, usuario_id):
 
 
 
-class alteraNivel(UpdateView):
+@method_decorator(login_required, name='dispatch')
+class AlteraNivel(UpdateView):
     model = NivelAcesso
     fields = ['ds_nivelAcesso'] 
     template_name_suffix = ''
@@ -193,18 +200,21 @@ class alteraNivel(UpdateView):
 
 
 
-class usuarios(ListView):
+@method_decorator(login_required, name='dispatch')
+class UsuariosListView(ListView):
     model = Usuario
     template = ''
 
 
 
-class niveisAcesso(ListView):
+@method_decorator(login_required, name='dispatch')
+class NiveisAcessoListView(ListView):
     model = NivelAcesso
     template = ''
 
 
-class Telas(ListView):
+@method_decorator(login_required, name='dispatch')
+class TelasListView(ListView):
     model = MenuEntrada
     template = ''
 

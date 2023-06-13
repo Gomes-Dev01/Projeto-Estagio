@@ -57,6 +57,8 @@ MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
+LOGIN_URL = 'usuario-login'
+
 ROOT_URLCONF = "gradeaula.urls"
 
 TEMPLATES = [
