@@ -1,5 +1,6 @@
 from typing import Any, Dict
 from django.views.decorators.csrf import csrf_protect
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, get_object_or_404
@@ -12,7 +13,7 @@ from .models import Usuario,NivelAcesso, MenuEntrada
 from datetime import date
 
 
-
+@csrf_protect
 def index(request):
       
     form = UsuarioLoginForm(request)
@@ -28,26 +29,36 @@ def index(request):
         #             
         user = request.POST['usuario']        
         password = request.POST['senha']
-        baseusuario = Usuario.objects.get(usuario = user)
 
-       
+
+        try:
+            baseusuario = Usuario.objects.get(usuario = user)
+
         
-        #basesenha = Usuario.objects.filter(senha = password)
-        
-        #confirmacao = authenticate(request, usuario=user, senha=password)
-        
-        #if form.is_valid():
-            #login(request, confirmacao)
             
-            #form = InsereUsuarioForm()
-            # context = {
-            #'form': form
-            #}  
-        print("primeiro aqui")
-        if (check_password(password, baseusuario.senha)):
-            print("Depois aqui")
-            return redirect('usuario/')
-    return render(request, 'usuario/index.html')
+            #if baseusuario:
+               # return redirect(request, 'usuario/index.html', context)
+
+
+            #basesenha = Usuario.objects.filter(senha = password)
+            
+            #confirmacao = authenticate(request, usuario=user, senha=password)
+            
+            #if form.is_valid():
+                #login(request, confirmacao)
+                
+                #form = InsereUsuarioForm()
+                # context = {
+                #'form': form
+                #}  
+            print("primeiro aqui")
+            if (check_password(password, baseusuario.senha)):
+                print("Depois aqui")
+                return redirect('usuarios')
+            
+        except ObjectDoesNotExist:
+            return redirect('usuario-login')
+    return render(request, 'usuarios')
 
 @csrf_protect
 def homeUsuario(request):
@@ -84,7 +95,7 @@ def homeUsuario(request):
         
     return render(request, 'usuario/CadastroUsuario.html')
 
-
+@csrf_protect
 def cadastroNivel(request):
     if request.method == "POST": 
         novonivel = NivelAcesso()
@@ -111,7 +122,7 @@ def cadastroNivel(request):
     return redirect('niveisacesso')
 
 
-
+@csrf_protect
 def cadastroTela(request):
     if request.method == "GET":
         form = criaMenu()
@@ -138,7 +149,7 @@ def cadastroTela(request):
 
 
 
-
+@csrf_protect
 def alteraUsuario(request, usuario_id):
     usuario = get_object_or_404(Usuario, pk=usuario_id)
     niveis_disponiveis = NivelAcesso.objects.all()
@@ -173,15 +184,19 @@ def alteraUsuario(request, usuario_id):
     return render(request, 'usuario.html', context)
 
 
+
 class alteraNivel(UpdateView):
     model = NivelAcesso
     fields = ['ds_nivelAcesso'] 
     template_name_suffix = ''
     success_url = reverse_lazy('niveisacesso')
 
+
+
 class usuarios(ListView):
     model = Usuario
     template = ''
+
 
 
 class niveisAcesso(ListView):
