@@ -47,14 +47,15 @@
   </section>
 </aside>
 
-  <div class="divBtn">  <a href="{% url 'usuarios' %}"> <button class="btn btn-outline-dark" title="Voltar"> <i class="bi bi-arrow-return-left"></i> </a>  </button> </div>
+  <div class="divBtn">  <a href="{% url 'niveisacesso' %}"> <button class="btn btn-outline-dark" title="Voltar"> <i class="bi bi-arrow-return-left"></i> </a>  </button> </div>
   <div class="main-login">
     <div class="right-login">
       <form class="card-login" method="POST">
         {% csrf_token %} 
         <h1> Atualização de Nivel </h1>
-        <div>
-          {{ form.as_p }}
+        <div class="textfield" class="Charfield">
+          <label for="nivel"> Nível Acesso : </label>
+          <input type="text" name="nivel" value="{{ nivel.ds_nivelAcesso }}"> 
         </div>
         <input  class="btn-cadastrar" type="submit" value="Atualizar"> 
 

@@ -99,8 +99,8 @@ def homeUsuario(request):
     return render(request, 'usuario/CadastroUsuario.html')
 
 
-@login_required
-@csrf_protect
+#@login_required
+#@csrf_protect
 def cadastroNivel(request):
     if request.method == "POST": 
         novonivel = NivelAcesso()
@@ -115,7 +115,7 @@ def cadastroNivel(request):
             messages.info(request, 'Por favor insira o nome do nivel!')
         else:
             novonivel.save()
-            return redirect('usuarios')
+            return redirect('niveisacesso')
     
     elif request.method == "GET":
         form = criaNivel()
@@ -127,8 +127,8 @@ def cadastroNivel(request):
     return redirect('niveisacesso')
 
 
-@login_required
-@csrf_protect
+#@login_required
+#@csrf_protect
 def cadastroTela(request):
     if request.method == "GET":
         form = criaMenu()
@@ -154,8 +154,8 @@ def cadastroTela(request):
     return redirect('cadastromenu')
 
 
-@login_required
-@csrf_protect
+#@login_required
+#@csrf_protect
 def alteraUsuario(request, usuario_id):
     usuario = get_object_or_404(Usuario, pk=usuario_id)
     niveis_disponiveis = NivelAcesso.objects.all()
@@ -187,33 +187,44 @@ def alteraUsuario(request, usuario_id):
         'niveis_disponiveis': niveis_disponiveis,
         'niveis_selecionados': niveis_selecionados,  # Passa os IDs dos níveis selecionados para o template
     }
-    return render(request, 'usuario.html', context)
+    return render(request, 'usuario/usuario.html', context)
 
 
 
-@method_decorator(login_required, name='dispatch')
-class AlteraNivel(UpdateView):
-    model = NivelAcesso
-    fields = ['ds_nivelAcesso'] 
-    template_name_suffix = ''
-    success_url = reverse_lazy('niveisacesso')
+#@method_decorator(login_required, name='dispatch')
+def alteraNivel(request, nivel_id):
+
+    nivel = get_object_or_404(NivelAcesso, pk=nivel_id)
+     
+    if request.method == 'POST':
+        nivel.ds_nivelAcesso = request.POST["nivel"]
+        
+        nivel.save()
+
+        return redirect('niveisacesso')
+
+    context = {
+        'nivel': nivel,
+    }
+    return render(request, 'usuario/nivelacesso.html', context)
+    
 
 
 
-@method_decorator(login_required, name='dispatch')
+#@method_decorator(login_required, name='dispatch')
 class UsuariosListView(ListView):
     model = Usuario
     template = ''
 
 
 
-@method_decorator(login_required, name='dispatch')
+#@method_decorator(login_required, name='dispatch')
 class NiveisAcessoListView(ListView):
     model = NivelAcesso
     template = ''
 
 
-@method_decorator(login_required, name='dispatch')
+#@method_decorator(login_required, name='dispatch')
 class TelasListView(ListView):
     model = MenuEntrada
     template = ''
