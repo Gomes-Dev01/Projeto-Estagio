@@ -1,7 +1,7 @@
 from django.urls import path
 from  django.contrib.auth import views
 from . import views
-from .views import UsuariosListView, NiveisAcessoListView, cadastroTela, TelasListView, alteraNivel
+from .views import UsuariosListView, NiveisAcessoListView, cadastroTela, TelasListView, alteraNivel, alteraMenu
 
 
 
@@ -16,4 +16,5 @@ urlpatterns = [
 
     path('AtualizaUsuario/<int:usuario_id>', views.alteraUsuario, name='atualizausuario'),
     path('AtualizaNivel/<int:nivel_id>', views.alteraNivel, name='atualizanivelacesso'),
+    path('AtualizaMenu/<int:menu_id>', views.alteraMenu, name='atualizamenu'),
 ]

@@ -207,6 +207,26 @@ def alteraNivel(request, nivel_id):
         'nivel': nivel,
     }
     return render(request, 'usuario/nivelacesso.html', context)
+
+
+def alteraMenu(request, menu_id):
+
+    menu = get_object_or_404(MenuEntrada, pk=menu_id)
+     
+    if request.method == 'POST':
+        menu.ds_MenuEntrada = request.POST["ds_menu"]
+        menu.nivel_MenuEntrada = request.POST["nivel_menu"]
+        menu.ordem = request.POST["ordem"]
+        menu.nomepagina = request.POST["nome"]
+        
+        menu.save()
+
+        return redirect('telas')
+
+    context = {
+        'menu': menu,
+    }
+    return render(request, 'usuario/menu.html', context)
     
 
 
