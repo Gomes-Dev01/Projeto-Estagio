@@ -5,6 +5,7 @@ from django.contrib.auth.hashers import make_password
 class NivelAcesso(models.Model):
     id = models.AutoField(primary_key=True)
     ds_nivelAcesso = models.CharField(max_length=30)
+
     
     def __str__(self):
         return self.ds_nivelAcesso

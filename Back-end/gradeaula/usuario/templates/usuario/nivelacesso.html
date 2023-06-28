@@ -57,8 +57,27 @@
           <label for="nivel"> Nível Acesso : </label>
           <input type="text" name="nivel" value="{{ nivel.ds_nivelAcesso }}"> 
         </div>
+        <div class="textfield">  
+          <div class="btn-group">
+            <button class="btn btn-dark btn-md dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+            Níveis de Acesso
+            </button>
+                <ul class="dropdown-menu">
+                    <li>
+                      {% for menu in menus_disponiveis %}
+                      <div>
+                        <div class="dropdown-item" href="#">
+                          <input class="form-check-input" type="checkbox" name="menus" value="{{ menu.pk }}"
+                                  {% if menu.pk in menus_selecionados %}checked="checked"{% endif %}>
+                          <label class="form-check-label">{{ menu.ds_MenuEntrada }}</label>
+                        </div>
+                      </div>
+                      {% endfor %}  
+                    </li>
+                </ul>
+          </div>
+        </div>
         <input  class="btn-cadastrar" type="submit" value="Atualizar"> 
-
         {% if messages %}
           {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">

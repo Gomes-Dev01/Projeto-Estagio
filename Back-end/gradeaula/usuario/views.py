@@ -15,6 +15,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 
+
+
 @csrf_protect
 def index(request):
       
@@ -73,7 +75,7 @@ def homeUsuario(request):
         render(request, 'usuario/CadastroUsuario.html', context)
     elif request.method == "POST": 
         novo_usuario = Usuario()
-        nivelUsuario = NivelAcesso.objects.get(pk=10)      
+        nivelUsuario = NivelAcesso.objects.get(pk=1)      
 
         novo_usuario.nome = request.POST["nome"]
         novo_usuario.usuario = request.POST["usuario"]
@@ -139,7 +141,7 @@ def cadastroTela(request):
 
     elif request.method == "POST":
         novomenu = MenuEntrada()
-        nivelmenu = NivelAcesso.objects.get(pk=10) 
+        nivelmenu = NivelAcesso.objects.get(pk=1) 
 
         novomenu.ds_MenuEntrada = request.POST['ds_menu']
         novomenu.nivel_MenuEntrada = request.POST['nivel_menu']
@@ -189,25 +191,37 @@ def alteraUsuario(request, usuario_id):
     }
     return render(request, 'usuario/usuario.html', context)
 
-
-
-#@method_decorator(login_required, name='dispatch')
 def alteraNivel(request, nivel_id):
-
     nivel = get_object_or_404(NivelAcesso, pk=nivel_id)
-     
+    menus_disponiveis = MenuEntrada.objects.all()
+    menus_selecionados = nivel.menus.values_list('pk', flat=True)  # Obtém os IDs dos menus selecionados
+
     if request.method == 'POST':
+        menus_selecionados_post = request.POST.getlist('menus')
+
+        # Remove todos os menus existentes
+        nivel.menus.clear()
+
+        # Adiciona os novos menus selecionados
+        for menu_id in menus_selecionados_post:
+            menu = get_object_or_404(MenuEntrada, pk=menu_id)
+            nivel.menus.add(menu)
+
+        # Atualiza os dados do nível de acesso
         nivel.ds_nivelAcesso = request.POST["nivel"]
-        
         nivel.save()
 
         return redirect('niveisacesso')
 
     context = {
         'nivel': nivel,
+        'menus_disponiveis': menus_disponiveis,
+        'menus_selecionados': menus_selecionados,  # Passa os IDs dos menus selecionados para o template
     }
     return render(request, 'usuario/nivelacesso.html', context)
 
+
+#@method_decorator(login_required, name='dispatch')
 
 def alteraMenu(request, menu_id):
 
