@@ -2,6 +2,16 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
+<head>
+  
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  {% block head %}
+
+  {% endblock %}
+
+</head>
+
 <body>
   <!--MENU-->
   <i class="bi bi-list menu-mobile"></i>
@@ -35,7 +45,9 @@
 
   {% block content %}
 
-  {% end block %}
+
+
+  {% endblock %}
 
 
 

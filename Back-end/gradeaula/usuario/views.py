@@ -58,7 +58,7 @@ def index(request):
             print("primeiro aqui")
             if (check_password(password, baseusuario.senha)):
                 print("Depois aqui")
-                return redirect('usuarios')
+                return redirect('menupersonalizado', baseusuario)
             
         except ObjectDoesNotExist:
             return redirect('usuario-login')
@@ -245,8 +245,8 @@ def alteraMenu(request, menu_id):
 
 # permissão menu dinâmico
 
-def my_view(request):
-    usuario = request.user  # Supondo que você já tenha recuperado o usuário atual
+def my_view(request, user):
+    usuario = user # Supondo que você já tenha recuperado o usuário atual
     permissoes = MenuEntrada.objects.filter(id_niveis__usuarios=usuario)
     context = {'permissoes': permissoes}
     return render(request, 'base.html', context)
