@@ -243,6 +243,15 @@ def alteraMenu(request, menu_id):
     return render(request, 'usuario/menu.html', context)
     
 
+# permissão menu dinâmico
+
+def my_view(request):
+    usuario = request.user  # Supondo que você já tenha recuperado o usuário atual
+    permissoes = MenuEntrada.objects.filter(id_niveis__usuarios=usuario)
+    context = {'permissoes': permissoes}
+    return render(request, 'base.html', context)
+
+
 
 
 #@method_decorator(login_required, name='dispatch')
