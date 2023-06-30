@@ -14,38 +14,46 @@ from datetime import date
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 
 
 
 
 
 def index(request):
-    form = UsuarioLoginForm(request)
-    context = {
-        'form': form
-    }
-
     if request.method == "POST":
         form = UsuarioLoginForm(request.POST)
         
         if form.is_valid():
             usuario = form.cleaned_data.get('usuario')
             senha = form.cleaned_data.get('senha')
-            usual = Usuario.objects.get(usuario = usuario)
-
             
-            if check_password(senha , usual.senha):
-                user = authenticate(request, username=usuario, password=senha)
-                
-                if user is not None:
-                    login(request, user)
-                    return redirect('usuarios')
+            print("Usuário informado:", usuario)
+            print("Senha informada:", senha)
+            
+            user = authenticate(request, usuario_usuario_username_key=usuario, password=senha)
+            
+            if user is not None:
+                print("Autenticação bem-sucedida!")
+                login(request,user)
+                return redirect('menupersonalizado')
+            else:
+                print("Senha incorreta. Falha na autenticação.")
+    
+    else:
+        form = UsuarioLoginForm()
+
+    context = {
+        'form': form
+    }
 
     return render(request, 'usuario/index.html', context)
 
 
-@login_required
-@csrf_protect
+
+
+#@login_required
+#@csrf_protect
 def homeUsuario(request):
     if request.method == "GET":
         form = InsereUsuarioForm()
@@ -55,7 +63,7 @@ def homeUsuario(request):
         render(request, 'usuario/CadastroUsuario.html', context)
     elif request.method == "POST": 
         novo_usuario = Usuario()
-        nivelUsuario = NivelAcesso.objects.get(pk=10)      
+        nivelUsuario = NivelAcesso.objects.get(pk=1)      
 
         novo_usuario.nome = request.POST["nome"]
         novo_usuario.usuario = request.POST["usuario"]
@@ -81,8 +89,8 @@ def homeUsuario(request):
     return render(request, 'usuario/CadastroUsuario.html')
 
 
-@login_required
-@csrf_protect
+#@login_required
+#@csrf_protect
 def cadastroNivel(request):
     if request.method == "POST": 
         novonivel = NivelAcesso()
@@ -109,8 +117,8 @@ def cadastroNivel(request):
     return redirect('niveisacesso')
 
 
-@login_required
-@csrf_protect
+#@login_required
+#@csrf_protect
 def cadastroTela(request):
     if request.method == "GET":
         form = criaMenu()
@@ -136,8 +144,8 @@ def cadastroTela(request):
     return redirect('cadastromenu')
 
 
-@login_required
-@csrf_protect
+#@login_required
+#@csrf_protect
 def alteraUsuario(request, usuario_id):
     usuario = get_object_or_404(Usuario, pk=usuario_id)
     niveis_disponiveis = NivelAcesso.objects.all()
@@ -201,7 +209,7 @@ def alteraNivel(request, nivel_id):
     return render(request, 'usuario/nivelacesso.html', context)
 
 
-@method_decorator(login_required, name='dispatch')
+#@method_decorator(login_required, name='dispatch')
 
 def alteraMenu(request, menu_id):
 
@@ -224,7 +232,7 @@ def alteraMenu(request, menu_id):
     
 
 # permissão menu dinâmico
-@login_required
+#@login_required
 def my_view(request):
     usuario = request.user # Supondo que você já tenha recuperado o usuário atual
     permissoes = MenuEntrada.objects.filter(id_niveis__usuarios=usuario)
@@ -234,20 +242,20 @@ def my_view(request):
 
 
 
-@method_decorator(login_required, name='dispatch')
+#@method_decorator(login_required, name='dispatch')
 class UsuariosListView(ListView):
     model = Usuario
     template = ''
 
 
 
-@method_decorator(login_required, name='dispatch')
+#@method_decorator(login_required, name='dispatch')
 class NiveisAcessoListView(ListView):
     model = NivelAcesso
     template = ''
 
 
-@method_decorator(login_required, name='dispatch')
+#@method_decorator(login_required, name='dispatch')
 class TelasListView(ListView):
     model = MenuEntrada
     template = ''

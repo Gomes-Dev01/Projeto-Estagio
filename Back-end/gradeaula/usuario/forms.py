@@ -20,6 +20,7 @@ class criaMenu(forms.ModelForm):
 
 
 class UsuarioLoginForm(forms.Form):
-    usuario = forms.CharField(required = True, max_length=255)
-    senha = forms.HiddenInput()
+    usuario = forms.CharField(required=True, max_length=255)
+    senha = forms.CharField(widget=forms.PasswordInput())
+
 

@@ -58,6 +58,7 @@ MIDDLEWARE = [
 ]
 
 LOGIN_URL = 'usuario-login'
+LOGIN_REDIRECT_URL = 'menupersonalizado'  # ou a URL para redirecionar após o login bem-sucedido
 
 ROOT_URLCONF = "gradeaula.urls"
 
@@ -86,12 +87,11 @@ WSGI_APPLICATION = "gradeaula.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get('DB_NAME', 'gradeAula'),
+        "NAME": os.environ.get('DB_NAME', 'prjGradeAula'),
         "USER" : os.environ.get('DB_USER', 'postgres'),
-        "PASSWORD": os.environ.get('DB_PASS', 'cristina'),
+        "PASSWORD": os.environ.get('DB_PASS', '@LeoDataBase01'),
         "HOST": "localhost",
-        "PORT": "5432",
-        
+        "PORT": "5432",  
     }
 }
 
@@ -131,8 +131,6 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
-LOGIN_REDIRECT_URL = '/usuario/homeUsuario/'
 
 
 AUTHENTICATION_BACKENDS = [
