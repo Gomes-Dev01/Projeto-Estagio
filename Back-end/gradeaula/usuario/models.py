@@ -17,7 +17,7 @@ class Usuario(models.Model):
     nome  = models.CharField(max_length=50)
     status = models.CharField(max_length=1)
     inclusao = models.DateField(auto_now=True)
-    usuario = models.CharField(max_length=50)  
+    usuario = models.CharField(max_length=150, unique=True, default='nome@email.com')
 
 
     def save(self, *args, **kwargs):
